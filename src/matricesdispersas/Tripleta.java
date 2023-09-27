@@ -1,6 +1,8 @@
 
 package matricesdispersas;
 
+import javax.swing.JOptionPane;
+
 
 public class Tripleta {
 
@@ -12,9 +14,9 @@ public class Tripleta {
 
     }
     public  void CrearTripleta(int m[][]){
-        Mat[0][0]=Mat.length;
-        Mat[0][1]=Mat[0].length;
-        Mat[0][0]=N;
+        Mat[0][0]=m.length;
+        Mat[0][1]=m[0].length;
+        Mat[0][2]=N;
         int k=1;
         for(int i=0; i<m.length;i++){
             for(int j=0;j<m[0].length; j++){
@@ -22,14 +24,27 @@ public class Tripleta {
                 if(m[i][j]!=0){
                     Mat[k][0]=i;
                     Mat[k][1]=j;
-                    Mat[k][2]=Mat[i][j];
+                    Mat[k][2]=m[i][j];
                     k++;
                 }
 
             }
         }
-
+        
     }
+
+    public void Mostrar(){
+           
+        StringBuilder s = new StringBuilder();
+        
+        for(int i = 0; i<Mat.length; i++){
+            s.append("["+Mat[i][0]+"]"+"["+Mat[i][1]+"]"+"["+Mat[i][2]+"]\n");
+        }
+        
+        JOptionPane.showMessageDialog(null, s.toString());
+        
+    }
+    
     public int getN() {
         return N;
     }

@@ -19,12 +19,11 @@ public class MatricesDispersas {
         int n = 0;
         int m = 0;
         do {
-            n = (int) Math.floor(Math.random() * 10 + 2);
-            m = (int) Math.floor(Math.random() * 10 + 2);
+            n = (int) Math.floor(Math.random() * 3 + 2);
+            m = (int) Math.floor(Math.random() * 3 + 2);
         } while (n == 0 && m == 0);
 
-        System.out.println(n);
-        System.out.println(m);
+        System.out.println(n+"x"+m);
         System.out.println("");
         int Mat[][] = new int[n][m];
 
@@ -39,10 +38,10 @@ public class MatricesDispersas {
             }
             System.out.println(); // Salto de línea al final de cada fila
         }
-        // int Mat[][]={{0,0,1},{0,2,4},{1,1,3},{1,2,6},{2,2,9},{3,3,9}};
         Tripleta T = new Tripleta(ContarDato(Mat));
         T.CrearTripleta(Mat);
 
+        T.MostrarTripleta();
         Forma1 F1 = new Forma1();
         F1.Crear(Mat);
 
