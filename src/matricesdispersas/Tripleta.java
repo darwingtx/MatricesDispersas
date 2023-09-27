@@ -16,13 +16,13 @@ public class Tripleta {
         Mat[0][1]=Mat[0].length;
         Mat[0][0]=N;
         int k=1;
-        for(int i=0; i<Mat.length;i++){
-            for(int j=0;j<Mat[0].length; j++){
+        for(int i=0; i<m.length;i++){
+            for(int j=0;j<m[0].length; j++){
 
                 if(m[i][j]!=0){
                     Mat[k][0]=i;
                     Mat[k][1]=j;
-                    Mat[k][3]=Mat[i][j];
+                    Mat[k][2]=Mat[i][j];
                     k++;
                 }
 
