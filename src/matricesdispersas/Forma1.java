@@ -17,9 +17,32 @@ public class Forma1 {
       Paso3();
     }
     
+<<<<<<< HEAD
     public void Paso1(int M[][]){
           
     }
+=======
+    public void Paso1(int M[][]) {
+
+      int may, i = 0;
+
+      if (M.length > M[0].length) {
+
+          may = M.length;
+
+      } else {
+
+          may = M[0].length;
+      }
+
+      while (i < may) {
+
+          Nodo p = new Nodo(i, i, 0);
+          i++;
+      }
+
+  }
+>>>>>>> 56453609ae65ba9b67ca5db0a6240779d3caec2f
 
     public void Paso2(int M[][]){
         
