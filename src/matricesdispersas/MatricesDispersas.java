@@ -1,12 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package matricesdispersas;
 
 /**
  *
- * @author abela
+ * @author Darwin Castaño
+ * @author Andres Alvarez
+ * 
  */
 public class MatricesDispersas {
 
@@ -14,7 +13,6 @@ public class MatricesDispersas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
 
         int n = 0;
         int m = 0;
@@ -41,10 +39,10 @@ public class MatricesDispersas {
         Tripleta T = new Tripleta(ContarDato(Mat));
         T.CrearTripleta(Mat);
         T.Mostrar();
-        T.Sumar();
-
+        
         Forma1 F1 = new Forma1();
         F1.Crear(Mat);
+        T.Sumar();
 
     }
 
@@ -62,5 +60,4 @@ public class MatricesDispersas {
         return cont;
     }
     
-   //knhahcqwhoiqfhoqoawhciacjqpcn
 }
