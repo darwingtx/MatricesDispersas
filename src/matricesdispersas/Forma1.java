@@ -18,7 +18,7 @@ public class Forma1 {
     }
     
     public void Paso1(int M[][]){
-          g
+          
     }
 
     public void Paso2(int M[][]){
