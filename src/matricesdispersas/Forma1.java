@@ -54,11 +54,6 @@ public class Forma1 {
             Punta = x;
         }
     }
-<<<<<<< HEAD
-    public void Paso1(int M[][]){
-          
-    }
-=======
     public void Paso1(int M[][]) {
 
         int may, i = 0;
@@ -79,9 +74,7 @@ public class Forma1 {
         }
 
     }
->>>>>>> 56453609ae65ba9b67ca5db0a6240779d3caec2f
-
-    public void Paso2(int M[][]){
+public void Paso2(int M[][]){
         Nodo p=Punta.getLiga();
         int i=0, j=0;
         while (i<M.length) {
@@ -96,6 +89,7 @@ public class Forma1 {
             p=p.getLiga();
         }
     }
+    
 
     public void Paso3(){
         
