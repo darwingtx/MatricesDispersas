@@ -1,8 +1,6 @@
 
 package matricesdispersas;
 
-
-
 public class Forma1 {
     
     private Nodo Punta;
@@ -16,7 +14,8 @@ public class Forma1 {
       Paso2(M);
       Paso3();
     }
-    public void InsertarFinalRP(int fila, int colm, int dato) {
+
+    private void InsertarFinalRP(int fila, int colm, int dato) {
 
         Nodo x = new Nodo(fila, colm, dato);
 
@@ -35,7 +34,8 @@ public class Forma1 {
             Punta = x;
         }
     }
-    public void InsertarFinalF(Nodo q,int fila,int colm, int dato) {
+   
+    private void InsertarFinalF(Nodo q,int fila,int colm, int dato) {
 
         Nodo x = new Nodo(fila, colm, dato);
 
@@ -54,6 +54,7 @@ public class Forma1 {
             Punta = x;
         }
     }
+    
     public void Paso1(int M[][]) {
 
         int may, i = 0;
