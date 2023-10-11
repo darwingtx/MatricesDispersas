@@ -23,14 +23,14 @@ public class Forma1 {
 
             Nodo p = Punta;
 
-            while (p.getLiga() != null) {
+            while (p.getLiga() != Punta) {
 
                 p = p.getLiga();
             }
             p.setLiga(x);
+            x.setLiga(Punta);
 
         } else {
-
             Punta = x;
         }
     }
@@ -42,20 +42,18 @@ public class Forma1 {
         if (Punta != null) {
 
             Nodo p = q;
-
             while (p.getLf() != null) {
-
                 p = p.getLf();
             }
             p.setLf(x);
+            x.setLf(q);
 
         } else {
-
             Punta = x;
         }
     }
     
-    public void Paso1(int M[][]) {
+    private void Paso1(int M[][]) {
 
         int may, i = 0;
 
@@ -69,31 +67,55 @@ public class Forma1 {
         }
         
         Punta = new Nodo(M.length, M[0].length, 0);
+  Punta.setLiga(Punta);
         while (i < may) {
             InsertarFinalRP(i,i,0);
             i++;
         }
 
     }
-public void Paso2(int M[][]){
-        Nodo p=Punta.getLiga();
-        int i=0, j=0;
-        while (i<M.length) {
-            while (j<M[0].length) {
-                if(M[i][j]!=0){
-                    InsertarFinalF(p,i,j,M[i][j]);
-                }
-                j++;
-            }
-            j=0;
-            i++;
-            p=p.getLiga();
-        }
-    }
+
+    private void Paso2(int M[][]){
+          Nodo p=Punta.getLiga();
+          int i=0, j=0;
+          while (i<M.length) {
+              while (j<M[0].length) {
+                  if(M[i][j]!=0){
+                      InsertarFinalF(p,i,j,M[i][j]);
+                  }
+                  j++;
+              }
+              j=0;
+              i++;
+              p=p.getLiga();
+          }
+      }
     
 
-    public void Paso3(){
-        
+    private void Paso3(){
+        Nodo RC  = Punta.getLiga();
+        Nodo a = RC;
+        Nodo p = Punta.getLiga();
+        Nodo q = p.getLf();
+
+        while(RC!= Punta){
+
+          p = Punta.getLiga();
+            while(p!=Punta){
+              q = p.getLf();
+
+              while(q!=p){
+                if(q.getC() == RC.getC()){
+                  p.setLc(q);
+                }
+                q = q.getLf();
+              }
+              p=p.getLiga();
+
+            }
+
+            RC=RC.getLiga();
+        }
           
     }
     

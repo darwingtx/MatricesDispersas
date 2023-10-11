@@ -17,8 +17,8 @@ public class MatricesDispersas {
         int n = 0;
         int m = 0;
         do {
-            n = (int) Math.floor(Math.random() * 100 + 2);
-            m = (int) Math.floor(Math.random() * 100 + 2);
+            n = (int) Math.floor(Math.random() * 3+ 2);
+            m = (int) Math.floor(Math.random() * 3 + 2);
         } while (n == 0 && m == 0);
 
         System.out.println(n+"x"+m);
