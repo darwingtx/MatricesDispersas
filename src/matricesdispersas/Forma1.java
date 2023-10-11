@@ -19,6 +19,9 @@ public class Forma1 {
     private void InsertarFinalRP(int fila, int colm, int dato) {
 
         Nodo x = new Nodo(fila, colm, dato);
+        x.setLc(x);
+        x.setLf(x);
+
 
         if (Punta != null) {
 
@@ -30,6 +33,7 @@ public class Forma1 {
             }
             p.setLiga(x);
             x.setLiga(Punta);
+
 
         } else {
             Punta = x;
@@ -96,10 +100,13 @@ public class Forma1 {
         Nodo RC = Punta.getLiga();
         Nodo p = Punta.getLiga();
         Nodo q = p.getLf();
-        Nodo a = RC;
+        Nodo a;
 
         while (RC != Punta) {
+                a = RC;
+                p = RC;
             while (p != Punta) {
+               
                 q = p.getLf();
              
                 while (q != p) {
@@ -123,6 +130,7 @@ public class Forma1 {
 
             }
             RC = RC.getLiga();
+
         }
 
     }
