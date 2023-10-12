@@ -40,8 +40,8 @@ public class MatricesDispersas {
         T.CrearTripleta(Mat);
         T.Mostrar();
         
-        Forma1 F1 = new Forma1();
-        F1.Crear(Mat);
+        Forma2 F2 = new Forma2();
+        F2.crearF2(Mat);
         T.Sumar();
 
     }
