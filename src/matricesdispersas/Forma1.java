@@ -95,7 +95,26 @@ public class Forma1 {
             p = p.getLiga();
         }
     }
-
+    // private void Paso3(){
+    //     Nodo RC = Punta.getLiga(),a = RC, p = Punta.getLiga(), q = p.getLf();
+    //     while(RC != Punta){
+    //         a = RC;
+    //         p = Punta.getLiga();
+    //         while(p != Punta){
+    //             q = p.getLf();
+    //             while(q != p){
+    //                 if(q.getC() == RC.getC()){
+    //                     a.setLc(q);
+    //                     a = a.getLc();
+    //                 }
+    //                 q = q.getLf();
+    //             }
+    //             p = p.getLiga();
+    //         }
+    //         a.setLc(RC);
+    //         RC = RC.getLiga();
+    //     }
+    // }
     private void Paso3() {
         Nodo RC = Punta.getLiga();
         Nodo p = Punta.getLiga();
@@ -110,29 +129,24 @@ public class Forma1 {
                 q = p.getLf();
              
                 while (q != p) {
-                 if(q!=null){
+                 
                     if (q.getC() == RC.getC()) {
                         a.setLc(q);
                         a = q;
                     }
                     q = q.getLf();
-                }else { 
-                    p.setLf(p);
-                    q = p;
-
-                }
                 }
                 p = p.getLiga();
             
-        }
-            if (p == Punta) {
+            }
                 a.setLc(RC);
 
-            }
+          
             RC = RC.getLiga();
 
-        }
+        
 
     }
 
+}
 }
