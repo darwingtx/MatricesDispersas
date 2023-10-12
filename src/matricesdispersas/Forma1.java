@@ -104,7 +104,7 @@ public class Forma1 {
 
         while (RC != Punta) {
                 a = RC;
-                p = RC;
+                p = Punta.getLiga();
             while (p != Punta) {
                
                 q = p.getLf();

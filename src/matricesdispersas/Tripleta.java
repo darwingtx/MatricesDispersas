@@ -36,6 +36,7 @@ public class Tripleta {
     public void Sumar(){
         int suma = 0, k = 1;
         while(k<=Mat[0][2]){
+            
 
             if(k+1<Mat.length && Mat[k][0]==Mat[k+1][0]){
                 suma +=Mat[k][2];
