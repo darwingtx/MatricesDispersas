@@ -36,16 +36,14 @@ public class Tripleta {
     public void Sumar(){
         int suma = 0, k = 1;
         while(k<=Mat[0][2]){
-            suma += Mat[k][2];
-            if(k+1<=Mat.length && Mat[k][0]==Mat[k+1][0]){
-                //suma += Mat[k][2];
-               // k++;
+
+            if(k+1<Mat.length && Mat[k][0]==Mat[k+1][0]){
+                suma +=Mat[k][2];
+               
             }else{
+                suma+=Mat[k][2];
                 JOptionPane.showMessageDialog(null, "La suma de la fila "+ (Mat[k][0]+1)+ " es = "+ suma);
-                // if(k+1<=Mat[0][2]){
-                //     k++;        
-                // }
-                suma =Mat[k+1][2];
+                suma = 0;
             }
             k++;
         }
