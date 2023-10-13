@@ -11,9 +11,6 @@ import utilidades.Utilidades;
  */
 public class MatricesDispersas {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         int Mat[][] = Utilidades.LlenadoAleatorio();
@@ -23,9 +20,12 @@ public class MatricesDispersas {
         T.CrearTripleta(Mat);
         T.Mostrar();
         
+        Forma1 F1 = new Forma1();
+        F1.Crear(Mat);
+        F1.MostrarF1();
         Forma2 F2 = new Forma2();
         F2.crearF2(Mat);
-        T.Sumar();
+        T.SumarFila();
 
     }
 

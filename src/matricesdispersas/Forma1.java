@@ -1,6 +1,8 @@
 
 package matricesdispersas;
 
+import javax.swing.JOptionPane;
+
 public class Forma1 {
 
     private Nodo Punta;
@@ -22,7 +24,6 @@ public class Forma1 {
         x.setLc(x);
         x.setLf(x);
 
-
         if (Punta != null) {
 
             Nodo p = Punta;
@@ -33,7 +34,6 @@ public class Forma1 {
             }
             p.setLiga(x);
             x.setLiga(Punta);
-
 
         } else {
             Punta = x;
@@ -95,7 +95,7 @@ public class Forma1 {
             p = p.getLiga();
         }
     }
-    
+
     private void Paso3() {
         Nodo RC = Punta.getLiga();
         Nodo p = Punta.getLiga();
@@ -103,14 +103,14 @@ public class Forma1 {
         Nodo a;
 
         while (RC != Punta) {
-                a = RC;
-                p = Punta.getLiga();
+            a = RC;
+            p = Punta.getLiga();
             while (p != Punta) {
-               
+
                 q = p.getLf();
-             
+
                 while (q != p) {
-                 
+
                     if (q.getC() == RC.getC()) {
                         a.setLc(q);
                         a = q;
@@ -118,16 +118,38 @@ public class Forma1 {
                     q = q.getLf();
                 }
                 p = p.getLiga();
-            
-            }
-                a.setLc(RC);
 
-          
+            }
+            a.setLc(RC);
+
             RC = RC.getLiga();
 
-        
-
+        }
     }
 
-}
+    public void MostrarF1() {
+
+        if (Punta != null) {
+
+            String s = "";
+            Nodo p = Punta.getLiga(), RC = Punta.getLiga();
+            s = "| " + Punta.getF()+ " | " + Punta.getC() + " |";
+            do {
+                s=s+"\n| "+RC.getF()+" / "+RC.getC()+" / 0 | ";
+                p=RC.getLf();
+                while(p!=RC){
+                    s= s + " ----> | "+p.getF()+" / "+p.getC()+" / "+ p.getDato() +"|";
+                    p = p.getLf();
+                }
+                RC = RC.getLiga();
+            } while (RC != Punta);
+
+        System.out.println(s);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "No hay Matriz");
+        }
+    }
+
 }

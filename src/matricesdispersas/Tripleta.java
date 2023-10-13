@@ -33,17 +33,17 @@ public class Tripleta {
         
     }
 
-    public void Sumar(){
+    public void SumarFila(){
         int suma = 0, k = 1;
+        System.out.println();
         while(k<=Mat[0][2]){
             
-
             if(k+1<Mat.length && Mat[k][0]==Mat[k+1][0]){
                 suma +=Mat[k][2];
                
             }else{
                 suma+=Mat[k][2];
-                JOptionPane.showMessageDialog(null, "La suma de la fila "+ (Mat[k][0]+1)+ " es = "+ suma);
+                System.out.println("La suma de la fila "+ (Mat[k][0]+1)+ " es = "+ suma);
                 suma = 0;
             }
             k++;
