@@ -1,6 +1,8 @@
 
 package matricesdispersas;
 
+import javax.swing.JOptionPane;
+
 public class Forma1 {
 
     private Nodo Punta;
@@ -124,10 +126,28 @@ public class Forma1 {
 
           
             RC = RC.getLiga();
-
-        
-
     }
-
 }
+ public void Sumarfilas(){
+    Nodo p=Punta.getLiga();
+    Nodo q;
+    int suma=0,i=0;
+    while(p!=Punta){
+          q=p.getLf();
+       while(q!=p){
+            if(q.getLf()!=p &&   q.getF()==q.getLf().getF()){
+                suma +=q.getDato();
+                
+               
+            }else{
+                i++;
+                suma+=q.getDato();
+                JOptionPane.showMessageDialog(null, "La suma de la fila "+i+ " es = "+ suma);
+                suma = 0;
+            }
+            q=q.getLf();
+        }
+        p=p.getLiga();
+    }
+ }
 }
