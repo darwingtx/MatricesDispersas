@@ -23,10 +23,7 @@ public class MatricesDispersas {
         Forma1 F1 = new Forma1();
         F1.Crear(Mat);
         F1.MostrarF1();
-        Forma1 F1 = new Forma1();
-        F1.Crear(Mat);
-        F1.Sumarfilas();
-       // T.SumarFila();
+        
 
     }
 
