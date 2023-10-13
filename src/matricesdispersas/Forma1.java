@@ -152,4 +152,26 @@ public class Forma1 {
             JOptionPane.showMessageDialog(null, "No hay Matriz");
         }
     }
+  public void Sumarcolumnas(){
+    Nodo p=Punta.getLiga();
+    Nodo q;
+    int suma=0,i=0;
+    while(p!=Punta){
+          q=p.getLc();
+       while(q!=p){
+            if(q.getLc()!=p &&   q.getC()==q.getLc().getC()){
+                suma +=q.getDato();
+                
+               
+            }else{
+                i++;
+                suma+=q.getDato();
+                JOptionPane.showMessageDialog(null, "La suma de la Columnas "+i+ " es = "+ suma);
+                suma = 0;
+            }
+            q=q.getLc();
+        }
+        p=p.getLiga();
+    }
+ }
 }
