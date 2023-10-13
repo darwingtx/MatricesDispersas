@@ -57,8 +57,8 @@ public class Tripleta {
         for(int i = 0; i<Mat.length; i++){
             s.append("["+Mat[i][0]+"]"+"["+Mat[i][1]+"]"+"["+Mat[i][2]+"]\n");
         }
-        
-        JOptionPane.showMessageDialog(null, s.toString());
+        System.out.println();
+        System.out.println(s.toString());
         
     }
     

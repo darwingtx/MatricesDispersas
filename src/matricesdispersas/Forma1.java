@@ -3,7 +3,6 @@ package matricesdispersas;
 
 import javax.swing.JOptionPane;
 
-
 public class Forma1 {
 
     private Nodo Punta;
@@ -125,9 +124,32 @@ public class Forma1 {
 
             RC = RC.getLiga();
 
-        
+        }
 
     }
 
-}
+    public void MostrarF1() {
+
+        if (Punta != null) {
+
+            String s = "";
+            Nodo p = Punta.getLiga(), RC = Punta.getLiga();
+            s = "| " + Punta.getF() + " | " + Punta.getC() + " |";
+            do {
+                s = s + "\n| " + RC.getF() + " / " + RC.getC() + " / 0 | ";
+                p = RC.getLf();
+                while (p != RC) {
+                    s = s + " ----> | " + p.getF() + " / " + p.getC() + " / " + p.getDato() + "|";
+                    p = p.getLf();
+                }
+                RC = RC.getLiga();
+            } while (RC != Punta);
+
+            System.out.println(s);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "No hay Matriz");
+        }
+    }
 }

@@ -20,10 +20,11 @@ public class MatricesDispersas {
         T.CrearTripleta(Mat);
         T.Mostrar();
         
+
         Forma1 F1 = new Forma1();
         F1.Crear(Mat);
         F1.MostrarF1();
-        
+        T.SumarFila();
 
     }
 
