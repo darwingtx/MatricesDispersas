@@ -24,7 +24,6 @@ public class MatricesDispersas {
         Forma1 F1 = new Forma1();
         F1.Crear(Mat);
         F1.Sumarcolumnas();
-       // T.Sumar();
         F1.MostrarF1();
         T.SumarFila();
 
