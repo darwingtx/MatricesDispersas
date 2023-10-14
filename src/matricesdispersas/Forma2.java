@@ -1,5 +1,7 @@
 package matricesdispersas;
 
+import javax.swing.JOptionPane;
+
 public class Forma2 {
 
     // Atributos
@@ -38,29 +40,96 @@ public class Forma2 {
 
         Nodo x = new Nodo(fila, colm, dato);
         Nodo p = Punta;
-        // if (p.getLf() != Punta) {
+       
         while (p.getLf() != Punta) {
             p = p.getLf();
         }
         p.setLf(x);
         x.setLf(Punta);
-        // } else {
-        // p.setLf(x);
-        // x.setLf(Punta);
-
-        // }
-
+   
     }
     
     private void paso2(){
-        int i=0;
-    Nodo p=Punta,q=p,a=p;
-       
+        int i = 0;
+        Nodo p = Punta.getLf(), a = Punta;
+        while (i < Punta.getC()) {
+            while (p != Punta) {
+                if (p.getC() == i) {
+                    a.setLc(p);
+                    a = p;
+                }
+                p = p.getLf();
 
-
-
-
-   
+            }
+            i++;
+            a.setLc(p);
+            p = Punta.getLf();
+        }
     }
+ 
+    public void MostrarfilaF2() {
 
+        if (Punta != null) {
+            String s = "";
+            Nodo p = Punta.getLf();
+            s = s + "| " + Punta.getF() + " / " + Punta.getC() + " / " + Punta.getDato() + "|";
+            while (p != Punta) {
+                s = s + " ----> | " + p.getF() + " / " + p.getC() + " / " + p.getDato() + "|";
+                p = p.getLf();
+            }
+            System.out.println(s);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay Matriz");
+        }
+    }
+    
+      public void MostrarcolunmaF2() {
+
+        if (Punta != null) {
+            String s = "";
+            Nodo p = Punta.getLc();
+            s = s + "| " + Punta.getF() + " / " + Punta.getC() + " / " + Punta.getDato() + "|";
+            while (p != Punta) {
+                s = s + " ----> | " + p.getF() + " / " + p.getC() + " / " + p.getDato() + "|";
+                p = p.getLc();
+            }
+            System.out.println(s);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay Matriz");
+        }
+    }
+    public void Sumarcolumnas() {
+        Nodo q = Punta.getLc();
+        int suma = 0, i = 0;
+            while (q != Punta) {
+                if (q.getLc() != Punta && q.getC() == q.getLc().getC()) {
+                    suma += q.getDato();
+
+                } else {
+                    i++;
+                    suma += q.getDato();
+                    JOptionPane.showMessageDialog(null, "La suma de la Columnas " + i + " es = " + suma);
+                    suma = 0;
+                }
+                q = q.getLc();
+        }
+    }
+       public void Sumarfilas() {
+        Nodo q = Punta.getLf();
+        int suma = 0, i = 0;
+            while (q != Punta) {
+                if (q.getLf() != Punta && q.getF() == q.getLf().getF()) {
+                    suma += q.getDato();
+
+                } else {
+                    i++;
+                    suma += q.getDato();
+                    JOptionPane.showMessageDialog(null, "La suma de la Columnas " + i + " es = " + suma);
+                    suma = 0;
+                }
+                q = q.getLf();
+        }
+    }
 }

@@ -18,14 +18,19 @@ public class MatricesDispersas {
 
         Tripleta T = new Tripleta(Utilidades.ContarDato(Mat));
         T.CrearTripleta(Mat);
-        T.Mostrar();
+//        T.Mostrar();
         
 
-        Forma1 F1 = new Forma1();
-        F1.Crear(Mat);
-        F1.Sumarcolumnas();
-        F1.MostrarF1();
-        T.SumarFila();
+        // Forma1 F1 = new Forma1();
+        // F1.Crear(Mat);
+        // F1.Sumarcolumnas();
+        // F1.MostrarF1();
+        // T.SumarFila();
+        // F2.MostrarcolunmaF2();
+          Forma2 F2 = new Forma2();
+        F2.crearF2(Mat);
+//        F2.Sumarcolumnas();
+       F2.Sumarfilas();
 
     }
 
