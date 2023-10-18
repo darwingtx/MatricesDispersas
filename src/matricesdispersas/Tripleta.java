@@ -144,7 +144,7 @@ public class Tripleta {
      //se debe de comprobar exteriormente si poseen igual columnas this que A filas
      //el resultado sera las filas de this por las columnas de A
     // e,i,j y c,j,k
-    public void MultiplicarTripleta(Tripleta A){
+    public void Multiplicar(Tripleta A){
         Tripleta B = new Tripleta(this.Mat[0][1]*A.Mat[0][0]);
         B.Mat[0][0] = this.Mat[0][0];
         B.Mat[0][1] = A.Mat[0][1]; 

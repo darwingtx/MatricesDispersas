@@ -152,49 +152,123 @@ public class Forma1 {
             JOptionPane.showMessageDialog(null, "No hay Matriz");
         }
     }
-  public void Sumarcolumnas(){
-    Nodo p=Punta.getLiga();
-    Nodo q;
-    int suma=0,i=0;
-    while(p!=Punta){
-          q=p.getLc();
-       while(q!=p){
-            if(q.getLc()!=p &&   q.getC()==q.getLc().getC()){
-                suma +=q.getDato();
-                
-               
-            }else{
-                i++;
-                suma+=q.getDato();
-                JOptionPane.showMessageDialog(null, "La suma de la Columnas "+i+ " es = "+ suma);
-                suma = 0;
+
+    public void Sumarcolumnas() {
+        Nodo p = Punta.getLiga();
+        Nodo q;
+        int suma = 0, i = 0;
+        while (p != Punta) {
+            q = p.getLc();
+            while (q != p) {
+                if (q.getLc() != p && q.getC() == q.getLc().getC()) {
+                    suma += q.getDato();
+
+                } else {
+                    i++;
+                    suma += q.getDato();
+                    JOptionPane.showMessageDialog(null, "La suma de la Columnas " + i + " es = " + suma);
+                    suma = 0;
+                }
+                q = q.getLc();
             }
-            q=q.getLc();
+            p = p.getLiga();
         }
-        p=p.getLiga();
     }
- }
- public void Sumarfilas(){
-    Nodo p=Punta.getLiga();
-    Nodo q;
-    int suma=0,i=0;
-    while(p!=Punta){
-          q=p.getLf();
-       while(q!=p){
-            if(q.getLf()!=p &&   q.getF()==q.getLf().getF()){
-                suma +=q.getDato();
-                
-               
-            }else{
-                i++;
-                suma+=q.getDato();
-                JOptionPane.showMessageDialog(null, "La suma de la fila "+i+ " es = "+ suma);
-                suma = 0;
+
+    public void Sumarfilas() {
+        Nodo p = Punta.getLiga();
+        Nodo q;
+        int suma = 0, i = 0;
+        while (p != Punta) {
+            q = p.getLf();
+            while (q != p) {
+                if (q.getLf() != p && q.getF() == q.getLf().getF()) {
+                    suma += q.getDato();
+
+                } else {
+                    i++;
+                    suma += q.getDato();
+                    JOptionPane.showMessageDialog(null, "La suma de la fila " + i + " es = " + suma);
+                    suma = 0;
+                }
+                q = q.getLf();
             }
-            q=q.getLf();
+            p = p.getLiga();
         }
-        p=p.getLiga();
     }
- }
+
+    public void Multiplicar(Forma1 A) {
+        Forma1 B = new Forma1();
+        int[][] Mat = new int[this.Punta.getF()][A.Punta.getC()];
+        B.Paso1(Mat);
+        Nodo p = null;
+        int e = 0, c = 0;
+        int k = 0, i = 0, j = 0, ins = 0;
+        while (i < this.Punta.getF()) {
+            k = 0;
+            while (k < A.Punta.getC()) {
+                j = 0;
+                ins = 0;
+                while (j < this.Punta.getC()) {
+                    if (this.encontrarP(i, j) != null && A.encontrarP(j, k) != null) {
+                        e = this.encontrarP(i, j).getDato();
+                        c = A.encontrarP(j, k).getDato();
+                    } else {
+                        e = 0;
+                        c = 0;
+                    }
+                    ins += e * c;
+                    // this.Mat[i][j]*A.Mat[j][k];
+
+                    j++;
+                }
+                if (ins != 0) {
+                    p = B.encontrarRC(i);
+                    InsertarFinalF(p, i, k, ins);
+
+                }
+                k++;
+            }
+            i++;
+        }
+        B.Paso3();
+        B.MostrarF1();
+    }
+
+   private Nodo encontrarRC(int n) {
+        Nodo p = Punta.getLiga();
+        while (p != Punta) {
+            if (p.getF() == n) {
+                return p;
+            }
+            p=p.getLiga();
+        }
+        return null;
+    
+    }
+    private Nodo encontrarP(int n, int m) {
+        Nodo p = Punta.getLiga();
+        Nodo q= p.getLf();
+        while (p != Punta) {
+            q=p.getLf();
+        while(q!=p){
+            if (q.getF() == n && q.getC() == m) {
+                return q;
+                    }
+                    q=q.getLf();
+            }
+            p=p.getLiga();
+        }
+        return null;
+    
+    }
+
+    public Nodo getPunta() {
+        return Punta;
+    }
+
+    public void setPunta(Nodo punta) {
+        Punta = punta;
+    }
 
 }
