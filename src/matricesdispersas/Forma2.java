@@ -34,9 +34,44 @@ public class Forma2 {
             j = 0;
             i++;
         }
+}                   //fila  columna  dato
+public void InsertarD(int a, int b, int c){
+    Nodo x = new Nodo(a, b, c);
+     Nodo p = Punta;
+     Nodo q;
+
+     while(p!=Punta){
+          if(p.getF()==a){
+           if(p.getC() >b ){
+            q = Buscarant(p);
+            q.setLf(x);
+            x.setLf(p);
+           }else if(p.getC()<b){
+            q=p;
+            p=p.getLf();
+            if(p.getF()==a && b<p.getC()){
+                 q.setLf(x);
+                 x.setLf(p);
+            } else if(p.getF()!=a){
+                 q.setLf(x);
+                 x.setLf(p);
+
+            }
+           } 
+          }
+
+     }
+     
+    }
+    private Nodo Buscarant(Nodo p){
+        Nodo q = Punta;
+        while(q.getLf()!=p){
+            q = q.getLf();
+        }
+        return q;
     }
 
-    private void InsertarFinalF(int fila, int colm, int dato) {
+     private void InsertarFinalF(int fila, int colm, int dato) {
 
         Nodo x = new Nodo(fila, colm, dato);
         Nodo p = Punta;

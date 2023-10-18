@@ -81,6 +81,57 @@ public class Tripleta {
         System.out.println(s.toString());
 
     }
+     //se debe de comprobar exteriormente si poseen igual columnas this que A filas
+     //el resultado sera las filas de this por las columnas de A
+    // e,i,j y c,j,k
+    public void MultiplicarTripleta(Tripleta A){
+        Tripleta B = new Tripleta(this.Mat[0][1]*A.Mat[0][0]);
+        B.Mat[0][0] = this.Mat[0][0];
+        B.Mat[0][1] = A.Mat[0][1]; 
+        int e=0, c=0; 
+        int k = 0, i = 0, j = 0, ins = 0,km=1;
+         while(i< this.getMat(0, 0)){  
+            k=0; 
+            while (k < A.Mat[0][0]) {
+                j=0;
+                ins=0;
+                while (j < A.Mat.length) {
+                    
+                ins+=this.BuscarPos(i,j) * A.BuscarPos(j, k);
+                        // this.Mat[i][j]*A.Mat[j][k]; 
+                    
+                  j++;
+                }
+                if(ins!=0){
+                B.Mat[km][0]=i;
+                B.Mat[km][1]=k;
+                B.Mat[km][2]=ins;
+                km++;
+                }
+                k++;
+            }
+            i++;
+         }
+        B.setN(km);
+        B.Mat[0][2]=km;
+        //B.Redimensionar();
+        B.Mostrar();
+    }
+
+    public int BuscarPos(int n, int m) {
+        int k = 1;
+        int aux = 0;
+        boolean ba = false;
+        while (k <= Mat[0][2]) {
+            if (Mat[k][0] == n && Mat[k][1] == m) {
+                return Mat[k][2];    
+            }
+            k++;
+        }
+        return 0;
+    }
+        
+    
 
     public int getN() {
         return N;
