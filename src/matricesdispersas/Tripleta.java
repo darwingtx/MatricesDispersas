@@ -46,7 +46,6 @@ public class Tripleta {
                 }
                 j++;
             }
-
             System.out.println("La suma de la Columna " + k + " es = " + suma);
             suma = 0;
             k++;
@@ -70,6 +69,67 @@ public class Tripleta {
         }
     }
 
+    private void Redimensionar(int n) {
+        int[][] vectAux = new int[this.getMat().length + 1][3];
+        int i = 0;
+        while (i <= this.getMat(0, 2)) {
+            if (i != n) {
+                vectAux[i][0] = this.getMat(i, 0);
+                vectAux[i][1] = this.getMat(i, 1);
+                vectAux[i][2] = this.getMat(i, 2);
+            } else {
+                // Desplazar las entradas en la matriz para insertar el nuevo dato.
+                for (int j = Mat[0][2]; j >= n; j--) {
+                            vectAux[j+1][0] = Mat[j][0];
+                            vectAux[j+1][1] = Mat[j][1];
+                            vectAux[j+1][2] = Mat[j][2];
+                        }
+                i = this.getMat(0, 2) +1;
+            }
+            i++;
+        }
+        this.setMat(vectAux);
+    }
+    
+
+
+        public void InsertarD(int n, int m, int dato) {
+            int Vpos = BuscarPos(n, m);
+            if(Vpos == 0){      
+               
+                int k = 1;
+                while (k <= Mat[0][2]) {
+                    if(Mat[k][0] == n && Mat[k][1] > m){
+                         // La posición no existe, por lo que necesitamos redimensionar y luego insertar el dato.
+                        Redimensionar(k); // Aumentar el tamaño de la matriz en 1.
+                        Mat[k][0] = n;
+                        Mat[k][1] = m;
+                        Mat[k][2] = dato;
+                        k = Mat[0][2] + 1;
+                        
+                    }
+                    k++;
+                }
+            } else {
+                
+            }
+        }
+    
+    public int BuscarPos(int n, int m) {
+        int k = 1;
+        int aux = 0;
+        boolean ba = false;
+        while (k <= Mat[0][2]) {
+            if (Mat[k][1] == n && Mat[k][1] == m) {
+                aux = k;
+                k = Mat[0][2] + 1;
+                ba = true;
+            }
+            k++;
+        }
+        return aux;
+    }
+
     public void Mostrar() {
 
         StringBuilder s = new StringBuilder();
@@ -90,14 +150,15 @@ public class Tripleta {
         B.Mat[0][1] = A.Mat[0][1]; 
         int e=0, c=0; 
         int k = 0, i = 0, j = 0, ins = 0,km=1;
-         while(i< this.getMat(0, 0)){  
+         while(i<this.getMat(0, 0)){  
             k=0; 
-            while (k < A.Mat[0][0]) {
+            while (k < A.Mat[0][1]) {
                 j=0;
                 ins=0;
-                while (j < A.Mat.length) {
-                    
-                ins+=this.BuscarPos(i,j) * A.BuscarPos(j, k);
+                while (j < this.Mat[0][1]) {
+                    e=this.encontrarPos(i,j);
+                    c=A.encontrarPos(j, k) ;
+                ins+= e * c;
                         // this.Mat[i][j]*A.Mat[j][k]; 
                     
                   j++;
@@ -112,13 +173,13 @@ public class Tripleta {
             }
             i++;
          }
-        B.setN(km);
-        B.Mat[0][2]=km;
-        //B.Redimensionar();
+        B.setN(km-1);
+        B.Mat[0][2]=km-1;
+        B.Redimensionar();
         B.Mostrar();
     }
 
-    public int BuscarPos(int n, int m) {
+    private int encontrarPos(int n, int m) {
         int k = 1;
         int aux = 0;
         boolean ba = false;
@@ -129,6 +190,20 @@ public class Tripleta {
             k++;
         }
         return 0;
+    }
+    private void Redimensionar(){
+         int[][] vectAux = new int[this.getMat(0, 2)+1][3];
+        int i = 0;
+        while (i <=this.N) {
+           
+                vectAux[i][0] = this.getMat(i, 0);
+                vectAux[i][1] = this.getMat(i, 1);
+                vectAux[i][2] = this.getMat(i, 2);
+            i++;
+            }
+            
+        
+        this.setMat(vectAux);
     }
         
     

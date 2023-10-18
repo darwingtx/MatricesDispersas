@@ -5,8 +5,8 @@ import utilidades.Utilidades;
 
 /**
  *
- * @author Darwin Castaño
  * @author Andres Alvarez
+ * @author Darwin Castaño
  * 
  */
 public class MatricesDispersas {
@@ -29,16 +29,7 @@ public class MatricesDispersas {
         T.MultiplicarTripleta(T2);
         }
 
-        // Forma1 F1 = new Forma1();
-        // F1.Crear(Mat);
-        // F1.Sumarcolumnas();
-        // F1.MostrarF1();
-        // T.SumarFila();
-        // F2.MostrarcolunmaF2();
-        //   Forma2 F2 = new Forma2();
-        // F2.crearF2(Mat);
-//        F2.Sumarcolumnas();
-      //  F2.Sumarfilas();
+        
 
     }
 
