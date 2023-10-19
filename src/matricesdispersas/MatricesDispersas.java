@@ -13,17 +13,17 @@ public class MatricesDispersas {
 
     public static void main(String[] args) {
 
-        int Mat[][] = Utilidades.LlenadoAleatorio(3,2);
+        int Mat[][] = Utilidades.LlenadoAleatorio(4,2);
         Utilidades.MostrarMatriz(Mat);
-        Forma2 F1= new Forma2();
-        F1.crearF2(Mat);
-        // Tripleta T = new Tripleta(Utilidades.ContarDato(Mat));
-        // T.CrearTripleta(Mat);
-    //  T.Mostrar();
-        int Mat2[][] = Utilidades.LlenadoAleatorio(3,2);
+        Tripleta T = new Tripleta(Utilidades.ContarDato(Mat));
+        T.CrearTripleta(Mat);
+        int Mat2[][] = Utilidades.LlenadoAleatorio(2,5);
         Utilidades.MostrarMatriz(Mat2);
-        Forma2 F2= new Forma2();
-        F2.crearF2(Mat2);
+        Forma2 F1= new Forma2();
+        F1.crearF2(Mat2);
+    //  T.Mostrar();
+        // Forma2 F2= new Forma2();
+        // F2.crearF2(Mat2);
         // Tripleta T2 = new Tripleta(Utilidades.ContarDato(Mat2));
 
         // T2.CrearTripleta(Mat2);
@@ -31,7 +31,7 @@ public class MatricesDispersas {
         // if(T.getMat(0, 1)==T2.getMat(0,0)){
         // T.Multiplicar(T2);
         // }
-          F1.SumadeF(F2);
+          T.Endemoniado(F1);
         
         
     }

@@ -214,7 +214,7 @@ public class Forma2 {
         B.MostrarcolunmaF2();
     }
 
-    private Nodo encontrarP(int n, int m) {
+    public Nodo encontrarP(int n, int m) {
         Nodo p = Punta.getLf();
         while (p != Punta) {
             if (p.getF() == n && p.getC() == m) {

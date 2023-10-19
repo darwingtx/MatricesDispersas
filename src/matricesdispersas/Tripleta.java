@@ -2,6 +2,7 @@
 package matricesdispersas;
 
 import javax.swing.JOptionPane;
+import matricesdispersas.Forma1;
 
 public class Tripleta {
 
@@ -206,6 +207,42 @@ public class Tripleta {
         this.setMat(vectAux);
     }
 
+    public void Endemoniado(Forma2 A) {
+        Forma1 B = new Forma1();
+        int[][] M = new int[this.getMat(0, 0)][A.getPunta().getC()];
+        B.Paso1(M);// privado
+        Nodo p = null;
+        int e = 0, c = 0;
+        int k = 0, i = 0, j = 0, ins = 0;
+        while (i < this.getMat(0, 0)) {
+            k = 0;
+            while (k < A.getPunta().getC()) {
+                j = 0;
+                ins = 0;
+                while (j < this.Mat[0][1]) {
+                    e = this.encontrarPos(i, j);
+                    if (A.encontrarP(j, k) != null) {// privado
+                        c = A.encontrarP(j, k).getDato();// privado
+                    } else {
+                        c = 0;
+                    }
+                    ins += e * c;
+
+                    j++;
+                }
+                if (ins != 0) {
+                    p = B.encontrarRC(i);// privado
+                    B.InsertarFinalF(p, i, k, ins);// privado
+                }
+                k++;
+            }
+            i++;
+        }
+        B.Paso3();
+        B.MostrarF1();
+        B.MostrarCOF1();
+    }
+
     // se debe hacer solo si ambas Tripletas tienen dimensiones iguales.
     public void SumadeT(Tripleta A) {
         Tripleta B = new Tripleta(this.Mat[0][0] * this.Mat[0][1]);
@@ -226,7 +263,7 @@ public class Tripleta {
                     B.Mat[km][2] = ins;
                     km++;
                 }
-                 j++;
+                j++;
             }
             i++;
         }

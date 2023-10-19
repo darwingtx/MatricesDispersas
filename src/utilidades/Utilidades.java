@@ -2,13 +2,13 @@ package utilidades;
 
 public class Utilidades {
     
-    public static int[][] LlenadoAleatorio(){
+    public static int[][] LlenadoAleatorio(int n, int m){
 
-         int n = 0;
-         int m = 0;
+        //  int n = 0;
+        //  int m = 0;
         do {
-             n = (int) Math.floor(Math.random() * 3+ 2);
-             m = (int) Math.floor(Math.random() * 3 + 2);
+            //  n = (int) Math.floor(Math.random() * 3+ 2);
+            //  m = (int) Math.floor(Math.random() * 3 + 2);
            
         } while (n == 0 && m == 0);
         

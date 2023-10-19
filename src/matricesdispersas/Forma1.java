@@ -40,7 +40,7 @@ public class Forma1 {
         }
     }
 
-    private void InsertarFinalF(Nodo q, int fila, int colm, int dato) {
+    public void InsertarFinalF(Nodo q, int fila, int colm, int dato) {
 
         Nodo x = new Nodo(fila, colm, dato);
         Nodo p = q;
@@ -58,7 +58,7 @@ public class Forma1 {
 
     }
 
-    private void Paso1(int M[][]) {
+     public void Paso1(int M[][]) {
 
         int may, i = 0;
 
@@ -80,7 +80,7 @@ public class Forma1 {
 
     }
 
-    private void Paso2(int M[][]) {
+    public void Paso2(int M[][]) {
         Nodo p = Punta.getLiga();
         int i = 0, j = 0;
         while (i < M.length) {
@@ -96,7 +96,7 @@ public class Forma1 {
         }
     }
 
-    private void Paso3() {
+    public void Paso3() {
         Nodo RC = Punta.getLiga();
         Nodo p = Punta.getLiga();
         Nodo q = p.getLf();
@@ -141,6 +141,30 @@ public class Forma1 {
                 while (p != RC) {
                     s = s + " ----> | " + p.getF() + " / " + p.getC() + " / " + p.getDato() + "|";
                     p = p.getLf();
+                }
+                RC = RC.getLiga();
+            } while (RC != Punta);
+
+            System.out.println(s);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "No hay Matriz");
+        }
+    }
+    public void MostrarCOF1() {
+
+        if (Punta != null) {
+
+            String s = "";
+            Nodo p = Punta.getLiga(), RC = Punta.getLiga();
+            s = "| " + Punta.getF() + " | " + Punta.getC() + " |";
+            do {
+                s = s + "\n| " + RC.getF() + " / " + RC.getC() + " / 0 | ";
+                p = RC.getLc();
+                while (p != RC) {
+                    s = s + " ----> | " + p.getF() + " / " + p.getC() + " / " + p.getDato() + "|";
+                    p = p.getLc();
                 }
                 RC = RC.getLiga();
             } while (RC != Punta);
@@ -233,7 +257,7 @@ public class Forma1 {
         B.MostrarF1();
     }
 
-    private Nodo encontrarRC(int n) {
+    public Nodo encontrarRC(int n) {
         Nodo p = Punta.getLiga();
         while (p != Punta) {
             if (p.getF() == n) {
