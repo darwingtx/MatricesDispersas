@@ -218,8 +218,6 @@ public class Forma1 {
                         c = 0;
                     }
                     ins += e * c;
-                    // this.Mat[i][j]*A.Mat[j][k];
-
                     j++;
                 }
                 if (ins != 0) {
@@ -235,32 +233,71 @@ public class Forma1 {
         B.MostrarF1();
     }
 
-   private Nodo encontrarRC(int n) {
+    private Nodo encontrarRC(int n) {
         Nodo p = Punta.getLiga();
         while (p != Punta) {
             if (p.getF() == n) {
                 return p;
             }
-            p=p.getLiga();
+            p = p.getLiga();
         }
         return null;
-    
+
     }
+
     private Nodo encontrarP(int n, int m) {
         Nodo p = Punta.getLiga();
-        Nodo q= p.getLf();
+        Nodo q = p.getLf();
         while (p != Punta) {
-            q=p.getLf();
-        while(q!=p){
-            if (q.getF() == n && q.getC() == m) {
-                return q;
-                    }
-                    q=q.getLf();
+            q = p.getLf();
+            while (q != p) {
+                if (q.getF() == n && q.getC() == m) {
+                    return q;
+                }
+                q = q.getLf();
             }
-            p=p.getLiga();
+            p = p.getLiga();
         }
         return null;
-    
+
+    }
+
+    public void SumadeF(Forma1 A) {
+        Forma1 B = new Forma1();
+        int[][] Mat = new int[this.Punta.getF()][A.Punta.getC()];
+        B.Paso1(Mat);
+        Nodo p = null;
+        int e = 0, c = 0;
+        int i = 0, j = 0, ins = 0;
+        while (i < this.Punta.getF()) {
+            j = 0;
+
+            while (j < this.Punta.getC()) {
+                e = 0;
+                c = 0;
+                if (this.encontrarP(i, j) != null) {
+                    e = this.encontrarP(i, j).getDato();
+
+                }
+                if (A.encontrarP(i, j) != null) {
+                    c = A.encontrarP(i, j).getDato();
+                }
+                ins = e + c;
+
+                if (ins != 0) {
+                    p = B.encontrarRC(i);
+                    InsertarFinalF(p, i, j, ins);
+
+                }
+
+                j++;
+            }
+            i++;
+        }
+
+        B.Paso3();
+        B.MostrarF1();
+
     }
 
     public Nodo getPunta() {

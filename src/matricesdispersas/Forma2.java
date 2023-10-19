@@ -170,12 +170,14 @@ public class Forma2 {
     }
 
     private Nodo Buscarant(Nodo p) {
+
         Nodo q = Punta;
         while (q.getLf() != p) {
             q = q.getLf();
         }
         return q;
     }
+
     public void Multiplicar(Forma2 A) {
         Forma2 B = new Forma2();
         B.InsertarFinalF(this.Punta.getF(),A.Punta.getC(),0);
@@ -224,6 +226,41 @@ public class Forma2 {
         return null;
     
     }
+
+   public void SumadeF(Forma2 A) {
+        Forma2 B = new Forma2();
+         B.InsertarFinalF(this.Punta.getF(),A.Punta.getC(),0);
+        int e = 0, c = 0;
+        int i = 0, j = 0, ins = 0;
+        while (i < this.Punta.getF()) {
+            j = 0;
+            while (j < this.Punta.getC()) {
+                e = 0;
+                c = 0;
+                if (this.encontrarP(i, j) != null) {
+                    e = this.encontrarP(i, j).getDato();
+
+                }
+                if (A.encontrarP(i, j) != null) {
+                    c = A.encontrarP(i, j).getDato();
+                }
+                ins = e + c;
+
+                if (ins != 0) {
+                    B.InsertarFinalF(i, j, ins);
+
+                }
+
+                j++;
+            }
+            i++;
+        }
+
+        B.paso2();
+        B.MostrarfilaF2();
+
+    }
+
     public Nodo getPunta() {
         return Punta;
     }

@@ -80,41 +80,40 @@ public class Tripleta {
             } else {
                 // Desplazar las entradas en la matriz para insertar el nuevo dato.
                 for (int j = Mat[0][2]; j >= n; j--) {
-                            vectAux[j+1][0] = Mat[j][0];
-                            vectAux[j+1][1] = Mat[j][1];
-                            vectAux[j+1][2] = Mat[j][2];
-                        }
-                i = this.getMat(0, 2) +1;
+                    vectAux[j + 1][0] = Mat[j][0];
+                    vectAux[j + 1][1] = Mat[j][1];
+                    vectAux[j + 1][2] = Mat[j][2];
+                }
+                i = this.getMat(0, 2) + 1;
             }
             i++;
         }
         this.setMat(vectAux);
     }
-    
 
+    public void InsertarD(int n, int m, int dato) {
+        int Vpos = BuscarPos(n, m);
+        if (Vpos == 0) {
 
-        public void InsertarD(int n, int m, int dato) {
-            int Vpos = BuscarPos(n, m);
-            if(Vpos == 0){      
-               
-                int k = 1;
-                while (k <= Mat[0][2]) {
-                    if(Mat[k][0] == n && Mat[k][1] > m){
-                         // La posición no existe, por lo que necesitamos redimensionar y luego insertar el dato.
-                        Redimensionar(k); // Aumentar el tamaño de la matriz en 1.
-                        Mat[k][0] = n;
-                        Mat[k][1] = m;
-                        Mat[k][2] = dato;
-                        k = Mat[0][2] + 1;
-                        
-                    }
-                    k++;
+            int k = 1;
+            while (k <= Mat[0][2]) {
+                if (Mat[k][0] == n && Mat[k][1] > m) {
+                    // La posición no existe, por lo que necesitamos redimensionar y luego insertar
+                    // el dato.
+                    Redimensionar(k); // Aumentar el tamaño de la matriz en 1.
+                    Mat[k][0] = n;
+                    Mat[k][1] = m;
+                    Mat[k][2] = dato;
+                    k = Mat[0][2] + 1;
+
                 }
-            } else {
-                
+                k++;
             }
+        } else {
+
         }
-    
+    }
+
     public int BuscarPos(int n, int m) {
         int k = 1;
         int aux = 0;
@@ -141,40 +140,41 @@ public class Tripleta {
         System.out.println(s.toString());
 
     }
-     //se debe de comprobar exteriormente si poseen igual columnas this que A filas
-     //el resultado sera las filas de this por las columnas de A
+
+    // se debe de comprobar exteriormente si poseen igual columnas this que A filas
+    // el resultado sera las filas de this por las columnas de A
     // e,i,j y c,j,k
-    public void Multiplicar(Tripleta A){
-        Tripleta B = new Tripleta(this.Mat[0][1]*A.Mat[0][0]);
+    public void Multiplicar(Tripleta A) {
+        Tripleta B = new Tripleta(this.Mat[0][1] * A.Mat[0][0]);
         B.Mat[0][0] = this.Mat[0][0];
-        B.Mat[0][1] = A.Mat[0][1]; 
-        int e=0, c=0; 
-        int k = 0, i = 0, j = 0, ins = 0,km=1;
-         while(i<this.getMat(0, 0)){  
-            k=0; 
+        B.Mat[0][1] = A.Mat[0][1];
+        int e = 0, c = 0;
+        int k = 0, i = 0, j = 0, ins = 0, km = 1;
+        while (i < this.getMat(0, 0)) {
+            k = 0;
             while (k < A.Mat[0][1]) {
-                j=0;
-                ins=0;
+                j = 0;
+                ins = 0;
                 while (j < this.Mat[0][1]) {
-                    e=this.encontrarPos(i,j);
-                    c=A.encontrarPos(j, k) ;
-                ins+= e * c;
-                        // this.Mat[i][j]*A.Mat[j][k]; 
-                    
-                  j++;
+                    e = this.encontrarPos(i, j);
+                    c = A.encontrarPos(j, k);
+                    ins += e * c;
+                    // this.Mat[i][j]*A.Mat[j][k];
+
+                    j++;
                 }
-                if(ins!=0){
-                B.Mat[km][0]=i;
-                B.Mat[km][1]=k;
-                B.Mat[km][2]=ins;
-                km++;
+                if (ins != 0) {
+                    B.Mat[km][0] = i;
+                    B.Mat[km][1] = k;
+                    B.Mat[km][2] = ins;
+                    km++;
                 }
                 k++;
             }
             i++;
-         }
-        B.setN(km-1);
-        B.Mat[0][2]=km-1;
+        }
+        B.setN(km - 1);
+        B.Mat[0][2] = km - 1;
         B.Redimensionar();
         B.Mostrar();
     }
@@ -185,28 +185,57 @@ public class Tripleta {
         boolean ba = false;
         while (k <= Mat[0][2]) {
             if (Mat[k][0] == n && Mat[k][1] == m) {
-                return Mat[k][2];    
+                return Mat[k][2];
             }
             k++;
         }
         return 0;
     }
-    private void Redimensionar(){
-         int[][] vectAux = new int[this.getMat(0, 2)+1][3];
+
+    private void Redimensionar() {
+        int[][] vectAux = new int[this.getMat(0, 2) + 1][3];
         int i = 0;
-        while (i <=this.N) {
-           
-                vectAux[i][0] = this.getMat(i, 0);
-                vectAux[i][1] = this.getMat(i, 1);
-                vectAux[i][2] = this.getMat(i, 2);
+        while (i <= this.N) {
+
+            vectAux[i][0] = this.getMat(i, 0);
+            vectAux[i][1] = this.getMat(i, 1);
+            vectAux[i][2] = this.getMat(i, 2);
             i++;
-            }
-            
-        
+        }
+
         this.setMat(vectAux);
     }
-        
-    
+
+    // se debe hacer solo si ambas Tripletas tienen dimensiones iguales.
+    public void SumadeT(Tripleta A) {
+        Tripleta B = new Tripleta(this.Mat[0][0] * this.Mat[0][1]);
+        B.Mat[0][0] = this.Mat[0][0];
+        B.Mat[0][1] = this.Mat[0][1];
+        int e = 0, c = 0;
+        int i = 0, j = 0, ins = 0, km = 1;
+        while (i < this.Mat[0][0]) {
+            j = 0;
+            while (j < this.Mat[0][1]) {
+                e = this.encontrarPos(i, j);
+                c = A.encontrarPos(i, j);
+                ins = e + c;
+
+                if (ins != 0) {
+                    B.Mat[km][0] = i;
+                    B.Mat[km][1] = j;
+                    B.Mat[km][2] = ins;
+                    km++;
+                }
+                 j++;
+            }
+            i++;
+        }
+        B.setN(km - 1);
+        B.Mat[0][2] = km - 1;
+        B.Redimensionar();
+        B.Mostrar();
+
+    }
 
     public int getN() {
         return N;
