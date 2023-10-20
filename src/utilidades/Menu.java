@@ -361,9 +361,9 @@ public class Menu {
         Forma2 F2 = new Forma2();
         int n = 0, m = 0;
         do {
-            op = Integer.parseInt(JOptionPane.showInputDialog(null, "--------Menu Forma1--------"
-                    + "\n1)Crear Matriz principal y Forma 1"
-                    + "\n2)Mostrar Forma 1"
+            op = Integer.parseInt(JOptionPane.showInputDialog(null, "--------Menu Forma2--------"
+                    + "\n1)Crear Matriz principal y Forma 2"
+                    + "\n2)Mostrar Forma 2"
                     + "\n3)Insertar Dato"
                     + "\n4)Eliminar"
                     + "\n5)Sumar Filas"
