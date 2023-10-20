@@ -248,6 +248,33 @@ public class Tripleta {
         B.MostrarF1();
     }
 
+    public void EliminarD(int dato) {
+        int cont = 0;
+        for (int k = 1; k <= N; k++) {
+            if (this.Mat[k][2] == dato) {
+                cont++;
+            }
+        }
+    
+        if (cont > 0) {
+            int[][] newMat = new int[N - cont + 1][3];
+            int index = 1;
+            for (int k = 1; k <= N; k++) {
+                if (this.Mat[k][2] != dato) {
+                    newMat[index][0] = this.getMat(k, 0);
+                    newMat[index][1] = this.getMat(k, 1);
+                    newMat[index][2] = this.getMat(k, 2);
+                    index++;
+                }
+            }
+            this.setMat(newMat);
+            this.setMat(0, 2, N - cont);
+            this.Mostrar();
+        } else {
+            System.out.println("No se encontró el dato en la tripleta.");
+        }
+    }
+
     // se debe hacer solo si ambas Tripletas tienen dimensiones iguales.
     public void SumadeT(Tripleta A) {
         Tripleta B = new Tripleta(this.Mat[0][0] * this.Mat[0][1]);
