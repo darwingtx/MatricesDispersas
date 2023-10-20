@@ -334,9 +334,10 @@ public class Forma1 {
             if (p != a) {
 
                 while (p != a) {
-                    if (p.getLf().getC() > m || p.getLf() == a) {
-                        x.setLf(p.getLf());
-                        p.setLf(x);
+                    if (p.getC() > m || p.getLf() == a) {
+                        q=Buscarant(p);
+                        x.setLf(p);
+                        q.setLf(x);
                         p = a;
                     } else {
                         p = p.getLf();
