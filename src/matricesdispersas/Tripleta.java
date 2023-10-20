@@ -2,7 +2,6 @@
 package matricesdispersas;
 
 import javax.swing.JOptionPane;
-import matricesdispersas.Forma1;
 
 public class Tripleta {
 
@@ -111,7 +110,17 @@ public class Tripleta {
                 k++;
             }
         } else {
-
+            String s = "Hay un dato en la posicion a insertar." + "\n¿Que desea hacer?" + "\n1) Remplazarlo"+ "\n2) Sumarlo";
+            int op = Integer.parseInt(JOptionPane.showInputDialog(null, s));
+            if(op == 1){
+                this.setMat(Vpos, 2, dato);
+            }else if(op == 2){
+                 this.setMat(Vpos, 2, dato + this.getMat(Vpos, 2));
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error intente de nuevo en la eleccion");
+                this.InsertarD(n, m, dato);
+            }
         }
     }
 
@@ -150,22 +159,23 @@ public class Tripleta {
         B.Mat[0][0] = this.Mat[0][0];
         B.Mat[0][1] = A.Mat[0][1];
         int e = 0, c = 0;
-        int k = 0, i = 0, j = 0, ins = 0, km = 1;
+        int k = 0, i = 0, j = 0, ins = 0, km = 1;// i para manejar las filas de la matriz principal es decir A
+        //km maneja las filas de la tripleta
         while (i < this.getMat(0, 0)) {
-            k = 0;
+            k = 0;// Columnas de la segunda
             while (k < A.Mat[0][1]) {
-                j = 0;
+                j = 0;//Columnas de la principal y las filas de la segunda
                 ins = 0;
-                while (j < this.Mat[0][1]) {
+                while (j < this.Mat[0][1]) {//Va hasta las columnas de la principal tambien se puede con las columnas de la otra
                     e = this.encontrarPos(i, j);
                     c = A.encontrarPos(j, k);
                     ins += e * c;
                     j++;
                 }
                 if (ins != 0) {
-                    B.Mat[km][0] = i;
-                    B.Mat[km][1] = k;
-                    B.Mat[km][2] = ins;
+                    B.Mat[km][0] = i;//fila
+                    B.Mat[km][1] = k;//columna 
+                    B.Mat[km][2] = ins;//resultado de la multiplicacion
                     km++;
                 }
                 k++;
@@ -180,8 +190,6 @@ public class Tripleta {
 
     private int encontrarPos(int n, int m) {
         int k = 1;
-        int aux = 0;
-        boolean ba = false;
         while (k <= Mat[0][2]) {
             if (Mat[k][0] == n && Mat[k][1] == m) {
                 return Mat[k][2];
@@ -270,6 +278,8 @@ public class Tripleta {
         B.Mostrar();
 
     }
+
+    
 
     public int getN() {
         return N;
