@@ -2,7 +2,6 @@
 package matricesdispersas;
 
 import javax.swing.JOptionPane;
-import matricesdispersas.Forma1;
 
 public class Tripleta {
 
@@ -283,7 +282,6 @@ public class Tripleta {
         }
         B.Paso3();
         B.MostrarF1();
-        B.MostrarCOF1();
     }
 
     public void EliminarD(int dato) {
