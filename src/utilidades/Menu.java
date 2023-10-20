@@ -264,7 +264,11 @@ public class Menu {
                     break;
 
                 case 4:
-                    int op2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Desea eliminar por: "
+                int op2 = 0;
+                    do {
+                        
+                    
+                     op2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Desea eliminar por: "
                             + "\n1)Dato"
                             + "\n2)Posicion"));
 
@@ -287,6 +291,7 @@ public class Menu {
                         default:
                             break;
                     }
+                    } while (op2!=0);
                     break;
 
                 case 5:
@@ -312,9 +317,9 @@ public class Menu {
                         Mat = new int[n][m];
                         Mat = Utilidades.LlenadoAleatorio(n, m);
                         F2.Crear(Mat);
-                        System.out.println("F1");
+                        JOptionPane.showMessageDialog(null,"F1");
                         F1.MostrarF1();
-                        System.out.println("F2");
+                        JOptionPane.showMessageDialog(null,"+F2");
                         F2.MostrarF1();
                         System.out.println("Resultado");
                         F1.SumadeF(F2);
@@ -333,9 +338,9 @@ public class Menu {
                         Mat = new int[m][n];
                         Mat = Utilidades.LlenadoAleatorio(m, n);
                         F2.Crear(Mat);
-                        System.out.println("F1");
+                        JOptionPane.showMessageDialog(null,"F1");
                         F1.MostrarF1();
-                        System.out.println("F2");
+                        JOptionPane.showMessageDialog(null,"*F2");
                         F2.MostrarF1();
                         System.out.println("Resultado");
                         F1.Multiplicar(F2);
@@ -466,9 +471,11 @@ public class Menu {
                         Mat = Utilidades.LlenadoAleatorio(n, m);
                         Forma2 F3 = new Forma2();
                         F3.crearF2(Mat);
+                        JOptionPane.showMessageDialog(null, "F2");
                         F2.MostrarfilaF2();
-                        JOptionPane.showMessageDialog(null, "+");
+                        JOptionPane.showMessageDialog(null, "+F3");
                         F3.MostrarfilaF2();
+                        JOptionPane.showMessageDialog(null,"Resultado");
                         F2.SumadeF(F3);
                     } else {
                         JOptionPane.showMessageDialog(null, "La Forma no ha sido creada todavía.");
@@ -492,9 +499,12 @@ public class Menu {
                         Mat = Utilidades.LlenadoAleatorio(n, m);
                         Forma2 F3 = new Forma2();
                         F3.crearF2(Mat);
+                        JOptionPane.showMessageDialog(null,"F2");
                         F2.MostrarfilaF2();
                         JOptionPane.showMessageDialog(null, "x");
+                        JOptionPane.showMessageDialog(null,"*F2");
                         F3.MostrarfilaF2();
+                        JOptionPane.showMessageDialog(null,"Resultado");
                         F2.Multiplicar(F3);
 
                     } else {
