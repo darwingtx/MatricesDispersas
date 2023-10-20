@@ -1,6 +1,7 @@
 
 package matricesdispersas;
 
+import utilidades.Menu;
 import utilidades.Utilidades;
 
 /**
@@ -12,35 +13,36 @@ import utilidades.Utilidades;
 public class MatricesDispersas {
 
     public static void main(String[] args) {
+         Menu x = new Menu();
+         x.Menus();
+        // int Mat[][] = {
+        //     {10,13,7},
+        //     {0,0,5},
+        //     {0,21,41},
+        //     {2,0,0}
+        // };
+        // // Utilidades.MostrarMatriz(Mat);
+        // int Mat2[][] = {
+        //         { 10,13,7,0},
+        //         { 0,5,0,21 },
+        //         { 41,2,0,0 }
+        // };
+        // Tripleta T = new Tripleta(Utilidades.ContarDato(Mat2));
+        // T.CrearTripleta(Mat2);
+        // Utilidades.MostrarMatriz(Mat2);
+        // // T.InsertarD(0, 0, 80);
+        // // T.Mostrar();
+        // Forma1 F1 = new Forma1();
+        // F1.Crear(Mat);
+        // // F1.InsertarD(1, 1, 999);
+        // F1.MostrarF1();
 
-        int Mat[][] = {
-            {10,13,7},
-            {0,0,5},
-            {0,21,41},
-            {2,0,0}
-        };
-        // Utilidades.MostrarMatriz(Mat);
-        int Mat2[][] = {
-                { 10,13,7,0},
-                { 0,5,0,21 },
-                { 41,2,0,0 }
-        };
-        Tripleta T = new Tripleta(Utilidades.ContarDato(Mat2));
-        T.CrearTripleta(Mat2);
-        Utilidades.MostrarMatriz(Mat2);
-        // T.InsertarD(0, 0, 80);
-        // T.Mostrar();
-        Forma1 F1 = new Forma1();
-        F1.Crear(Mat);
-        // F1.InsertarD(1, 1, 999);
-        F1.MostrarF1();
+        // System.out.println();
 
-        System.out.println();
+        // Forma1 F2 = new Forma1();
+        // F2.Crear(Mat2);
 
-        Forma1 F2 = new Forma1();
-        F2.Crear(Mat2);
-
-        F1.Multiplicar(F2);
+        // F1.Multiplicar(F2);
 
         // T.Mostrar();
        // Forma2 F2 = new Forma2();
