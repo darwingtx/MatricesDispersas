@@ -129,7 +129,7 @@ public class Forma1 {
 
         if (Punta != null) {
 
-            String s = "";
+            String s = "Mostrar Por Filas\n";
             Nodo p = Punta.getLiga(), RC = Punta.getLiga();
             s = "| " + Punta.getF() + " | " + Punta.getC() + " |";
             do {
@@ -142,7 +142,7 @@ public class Forma1 {
                 RC = RC.getLiga();
             } while (RC != Punta);
 
-            System.out.println(s);
+            JOptionPane.showMessageDialog(null, s);
 
         } else {
 
@@ -166,8 +166,7 @@ public class Forma1 {
                 }
                 RC = RC.getLiga();
             } while (RC != Punta);
-
-            System.out.println(s);
+            JOptionPane.showMessageDialog(null, s);
 
         } else {
 
@@ -266,7 +265,7 @@ public class Forma1 {
 
     }
 
-    private Nodo encontrarP(int n, int m) {//EncontrarPosicion
+    private Nodo encontrarP(int n, int m) {// EncontrarPosicion
         Nodo p = Punta.getLiga();
         Nodo q = p.getLf();
         while (p != Punta) {
@@ -347,15 +346,15 @@ public class Forma1 {
                 InsertarFinalF(a, n, m, dato);
             }
             this.Paso3();
-        }else{
-            String s = "Hay un dato en la posicion a insertar." + "\n¿Que desea hacer?" + "\n1) Remplazarlo"+ "\n2) Sumarlo";
+        } else {
+            String s = "Hay un dato en la posicion a insertar." + "\n¿Que desea hacer?" + "\n1) Remplazarlo"
+                    + "\n2) Sumarlo";
             int op = Integer.parseInt(JOptionPane.showInputDialog(null, s));
-            if(op == 1){
+            if (op == 1) {
                 q.setDato(dato);
-            }else if(op == 2){
-                 q.setDato(dato + q.getDato());
-            }
-            else{
+            } else if (op == 2) {
+                q.setDato(dato + q.getDato());
+            } else {
                 JOptionPane.showMessageDialog(null, "Error intente de nuevo en la eleccion");
                 this.InsertarD(n, m, dato);
             }
@@ -363,19 +362,19 @@ public class Forma1 {
 
     }
 
-    public void EliminarDato(int dato){
+    public void EliminarDato(int dato) {
         Nodo p = BuscarDato(dato);
-        while(p!= null){
+        while (p != null) {
             Nodo x = Buscarant(p);
             x.setLf(p.getLf());
             p.setLc(null);
             p.setLf(null);
-            p=BuscarDato(dato);
+            p = BuscarDato(dato);
         }
         Paso3();
     }
 
-    public void EliminarPos(int n, int m){
+    public void EliminarPos(int n, int m) {
         Nodo p = encontrarP(n, m);
         Nodo x = Buscarant(p);
         x.setLf(p.getLf());
@@ -385,7 +384,7 @@ public class Forma1 {
 
     }
 
-    public Nodo Buscarant(Nodo x){
+    public Nodo Buscarant(Nodo x) {
         Nodo p = Punta.getLiga();
         Nodo q = p.getLf();
         while (p != Punta) {
@@ -393,7 +392,7 @@ public class Forma1 {
             while (q != p) {
                 if (q.getLf() == x) {
                     return q;
-                }else if(p.getLf() == q && q == x){
+                } else if (p.getLf() == q && q == x) {
                     return p;
                 }
 

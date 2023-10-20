@@ -2,14 +2,11 @@ package utilidades;
 
 public class Utilidades {
     
+
+    
     public static int[][] LlenadoAleatorio(int n, int m){
 
-        do {
-             n = (int) Math.floor(Math.random() * 3+ 2);
-            m = (int) Math.floor(Math.random() * 3 + 2);
-           
-        } while (n == 0 && m == 0);
-        
+       
         System.out.println(n+"x"+m);
         System.out.println("");
         int Mat[][] = new int[n][m];

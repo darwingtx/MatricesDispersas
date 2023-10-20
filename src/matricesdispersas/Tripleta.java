@@ -36,7 +36,7 @@ public class Tripleta {
 
     public void SumarColumna() {
         int suma = 0, k = 0;
-        System.out.println();
+        String s="";
         while (k < Mat[0][1]) {
             int j = 1;
             while (j <= Mat[0][2]) {
@@ -47,15 +47,16 @@ public class Tripleta {
                 }
                 j++;
             }
-            System.out.println("La suma de la Columna " + k + " es = " + suma);
+            s = s + "\nLa suma de la Columna " + k + " es = " + suma;
             suma = 0;
             k++;
         }
+        JOptionPane.showMessageDialog(null, s);
     }
 
     public void SumarFila() {
         int suma = 0, k = 1;
-        System.out.println();
+        String s = "";
         while (k <= Mat[0][2]) {
 
             if (k + 1 < Mat.length && Mat[k][0] == Mat[k + 1][0]) {
@@ -63,11 +64,12 @@ public class Tripleta {
 
             } else {
                 suma += Mat[k][2];
-                System.out.println("La suma de la fila " + (Mat[k][0] + 1) + " es = " + suma);
+               s = s + "\nLa suma de la fila " + (Mat[k][0]) + " es = " + suma;
                 suma = 0;
             }
             k++;
         }
+        JOptionPane.showMessageDialog(null, s);
     }
 
     private void Redimensionar(int n) {
@@ -92,33 +94,73 @@ public class Tripleta {
         this.setMat(vectAux);
     }
 
+    public boolean BuscarDato(int dato) {
+        for (int k = 1; k <= N; k++) {
+            if (this.Mat[k][2] == dato) {
+                return true; // Se encontró el dato en la tripleta.
+            }
+        }
+        return false; // No se encontró el dato en la tripleta.
+    }
+
+    public void EliminarFC(int fila, int columna) {
+        boolean swt = false;
+        int i = 1; // Inicializamos i en 1 para evitar la eliminación de la primera fila de la
+                   // matriz.
+        int n = this.Mat[0][0];
+        int m = this.Mat[0][1];
+        for (int k = 1; k <= N; k++) {
+            if ((this.Mat[k][0] == fila) && (this.Mat[k][1] == columna)) {
+                swt = true;
+            }
+        }
+
+        if (swt) {
+            int[][] matE = new int[N][3];
+            for (int j = 1; j <= N; j++) {
+                if ((this.Mat[j][0] != fila) || (this.Mat[j][1] != columna)) {
+                    matE[i][0] = this.getMat(j, 0);
+                    matE[i][1] = this.getMat(j, 1);
+                    matE[i][2] = this.getMat(j, 2);
+                    i++;
+                }
+            }
+            this.setMat(matE);
+            this.setMat(0, 2, N - 1);
+            this.setMat(0, 1, m);
+            this.setMat(0, 0, n);
+            this.Mostrar();
+        }
+    }
+
     public void InsertarD(int n, int m, int dato) {
         int Vpos = BuscarPos(n, m);
         if (Vpos == 0) {
-
             int k = 1;
             while (k <= Mat[0][2]) {
                 if (Mat[k][0] == n && Mat[k][1] > m) {
-                    // La posición no existe, por lo que necesitamos redimensionar y luego insertar
-                    // el dato.
                     Redimensionar(k); // Aumentar el tamaño de la matriz en 1.
                     Mat[k][0] = n;
                     Mat[k][1] = m;
                     Mat[k][2] = dato;
-                    k = Mat[0][2] + 1;
-
+                    return;
                 }
                 k++;
             }
+            // Si no se encontró la posición, insertar al final.
+            Redimensionar(Mat[0][2] + 1);
+            Mat[Mat[0][2]][0] = n;
+            Mat[Mat[0][2]][1] = m;
+            Mat[Mat[0][2]][2] = dato;
         } else {
-            String s = "Hay un dato en la posicion a insertar." + "\n¿Que desea hacer?" + "\n1) Remplazarlo"+ "\n2) Sumarlo";
+            String s = "Hay un dato en la posicion a insertar." + "\n¿Que desea hacer?" + "\n1) Remplazarlo"
+                    + "\n2) Sumarlo";
             int op = Integer.parseInt(JOptionPane.showInputDialog(null, s));
-            if(op == 1){
+            if (op == 1) {
                 this.setMat(Vpos, 2, dato);
-            }else if(op == 2){
-                 this.setMat(Vpos, 2, dato + this.getMat(Vpos, 2));
-            }
-            else{
+            } else if (op == 2) {
+                this.setMat(Vpos, 2, dato + this.getMat(Vpos, 2));
+            } else {
                 JOptionPane.showMessageDialog(null, "Error intente de nuevo en la eleccion");
                 this.InsertarD(n, m, dato);
             }
@@ -126,18 +168,12 @@ public class Tripleta {
     }
 
     public int BuscarPos(int n, int m) {
-        int k = 1;
-        int aux = 0;
-        boolean ba = false;
-        while (k <= Mat[0][2]) {
-            if (Mat[k][1] == n && Mat[k][1] == m) {
-                aux = k;
-                k = Mat[0][2] + 1;
-                ba = true;
+        for (int k = 1; k <= Mat[0][2]; k++) {
+            if (Mat[k][0] == n && Mat[k][1] == m) {
+                return k;
             }
-            k++;
         }
-        return aux;
+        return 0;
     }
 
     public void Mostrar() {
@@ -147,36 +183,36 @@ public class Tripleta {
         for (int i = 0; i < Mat.length; i++) {
             s.append("[" + Mat[i][0] + "]" + "[" + Mat[i][1] + "]" + "[" + Mat[i][2] + "]\n");
         }
-        System.out.println();
-        System.out.println(s.toString());
+        JOptionPane.showMessageDialog(null, s.toString());
 
     }
 
     // se debe de comprobar exteriormente si poseen igual columnas this que A filas
     // el resultado sera las filas de this por las columnas de A
     // e,i,j y c,j,k
-    public void Multiplicar(Tripleta A) {//nxm m==n nxm
+    public void Multiplicar(Tripleta A) {// nxm m==n nxm
         Tripleta B = new Tripleta(this.Mat[0][0] * A.Mat[0][1]);
         B.Mat[0][0] = this.Mat[0][0];
         B.Mat[0][1] = A.Mat[0][1];
         int e = 0, c = 0;
         int k = 0, i = 0, j = 0, ins = 0, km = 1;// i para manejar las filas de la matriz principal es decir A
-        //km maneja las filas de la tripleta
+        // km maneja las filas de la tripleta
         while (i < this.getMat(0, 0)) {
             k = 0;// Columnas de la segunda
             while (k < A.Mat[0][1]) {
-                j = 0;//Columnas de la principal y las filas de la segunda
+                j = 0;// Columnas de la principal y las filas de la segunda
                 ins = 0;
-                while (j < this.Mat[0][1]) {//Va hasta las columnas de la principal tambien se puede con las columnas de la otra
+                while (j < this.Mat[0][1]) {// Va hasta las columnas de la principal tambien se puede con las columnas
+                                            // de la otra
                     e = this.encontrarPos(i, j);
                     c = A.encontrarPos(j, k);
                     ins += e * c;
                     j++;
                 }
                 if (ins != 0) {
-                    B.Mat[km][0] = i;//fila
-                    B.Mat[km][1] = k;//columna 
-                    B.Mat[km][2] = ins;//resultado de la multiplicacion
+                    B.Mat[km][0] = i;// fila
+                    B.Mat[km][1] = k;// columna
+                    B.Mat[km][2] = ins;// resultado de la multiplicacion
                     km++;
                 }
                 k++;
@@ -251,29 +287,40 @@ public class Tripleta {
     }
 
     public void EliminarD(int dato) {
-        int cont = 0;
+        if (N == 0) {
+            JOptionPane.showMessageDialog(null, ("La matriz está vacía, no hay datos para eliminar."));
+            return;
+        }
+
+        boolean datoEncontrado = false;
+        int contador = 0;
+        int i = 1;
+
+        // Encontrar el dato
         for (int k = 1; k <= N; k++) {
             if (this.Mat[k][2] == dato) {
-                cont++;
+                datoEncontrado = true;
+                contador++;
             }
         }
-    
-        if (cont > 0) {
-            int[][] newMat = new int[N - cont + 1][3];
-            int index = 1;
-            for (int k = 1; k <= N; k++) {
-                if (this.Mat[k][2] != dato) {
-                    newMat[index][0] = this.getMat(k, 0);
-                    newMat[index][1] = this.getMat(k, 1);
-                    newMat[index][2] = this.getMat(k, 2);
-                    index++;
+
+        // Si el dato se encuentra en la matriz
+        if (datoEncontrado) {
+            int[][] nuevaMatriz = new int[N - contador + 1][3];
+            for (int j = 1; j <= N; j++) {
+                if (this.Mat[j][2] != dato) {
+                    nuevaMatriz[i][0] = this.getMat(j, 0);
+                    nuevaMatriz[i][1] = this.getMat(j, 1);
+                    nuevaMatriz[i][2] = this.getMat(j, 2);
+                    i++;
                 }
             }
-            this.setMat(newMat);
-            this.setMat(0, 2, N - cont);
-            this.Mostrar();
+            this.setMat(nuevaMatriz);
+            this.setN(N - contador);
+            this.setMat(0, 2, N - contador);
+            JOptionPane.showMessageDialog(null, "Dato eliminado correctamente.");
         } else {
-            System.out.println("No se encontró el dato en la tripleta.");
+            JOptionPane.showMessageDialog(null, "El dato no se encontró en la tripleta.");
         }
     }
 
@@ -307,8 +354,6 @@ public class Tripleta {
         B.Mostrar();
 
     }
-
-    
 
     public int getN() {
         return N;
