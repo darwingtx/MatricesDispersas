@@ -14,8 +14,8 @@ import utilidades.Utilidades;
 public class MatricesDispersas {
 
     public static void main(String[] args) {
-
-         x.Menus();
+        Menu x  =new Menu();
+        x.Menus();
        
 
     }

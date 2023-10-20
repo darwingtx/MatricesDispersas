@@ -82,7 +82,7 @@ public class Forma2 {
                 s = s + " ----> | " + p.getF() + " / " + p.getC() + " / " + p.getDato() + "|";
                 p = p.getLf();
             }
-            System.out.println(s);
+            JOptionPane.showMessageDialog(null, s);
 
         } else {
             JOptionPane.showMessageDialog(null, "No hay Matriz");
@@ -99,7 +99,7 @@ public class Forma2 {
                 s = s + " ----> | " + p.getF() + " / " + p.getC() + " / " + p.getDato() + "|";
                 p = p.getLc();
             }
-            System.out.println(s);
+            JOptionPane.showMessageDialog(null, s);
 
         } else {
             JOptionPane.showMessageDialog(null, "No hay Matriz");
@@ -273,7 +273,7 @@ public class Forma2 {
         }
         B.paso2();
         B.MostrarfilaF2();
-        B.MostrarcolunmaF2();
+      //  B.MostrarcolunmaF2();
     }
 
     public Nodo encontrarP(int n, int m) {

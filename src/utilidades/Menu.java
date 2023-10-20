@@ -8,7 +8,7 @@ import matricesdispersas.Tripleta;
 
 public class Menu {
 
-    public Menu() {
+    public void Menus() {
         int op = 0;
         do {
 
@@ -99,7 +99,7 @@ public class Menu {
                         op2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Desea eliminar por: "
                                 + "\n1)Dato"
                                 + "\n2)Posicion"
-                                +"\n0)Salir"));
+                                + "\n0)Salir"));
                         switch (op2) {
                             case 1:
                                 int dato = Integer
@@ -115,7 +115,6 @@ public class Menu {
 
                                 T.EliminarFC(fila, columna);
                                 break;
-
 
                             default:
                                 break;
@@ -352,8 +351,160 @@ public class Menu {
     }
 
     public void MenuF2() {
+        int op = 0;
+        int[][] Mat = null;
+        Forma2 F2 = new Forma2();
+        int n = 0, m = 0;
+        do {
+            op = Integer.parseInt(JOptionPane.showInputDialog(null, "--------Menu Forma1--------"
+                    + "\n1)Crear Matriz principal y Forma 1"
+                    + "\n2)Mostrar Forma 1"
+                    + "\n3)Insertar Dato"
+                    + "\n4)Eliminar"
+                    + "\n5)Sumar Filas"
+                    + "\n6)Sumar Columnas"
+                    + "\n7)Sumar Formas "
+                    + "\n8)Multiplicar  Formas"
+                    + "\n0) Salir"));
 
+            switch (op) {
+                case 1:
+                    do {
+                        n = Integer.parseInt(
+                                JOptionPane.showInputDialog(null, "¿Cuantas filas tendra la matriz?(Diferente de 0)"));
+                        m = Integer.parseInt(
+                                JOptionPane.showInputDialog(null,
+                                        "¿Cuantas columnas tendra la matriz?(Diferente de 0)"));
+                    } while (n <= 0 || m <= 0);
+                    Mat = new int[n][m];
+                    Mat = Utilidades.LlenadoAleatorio(n, m);
+                    F2.crearF2(Mat);
+
+                    break;
+
+                case 2:
+                    if (F2 != null) {
+                        F2.MostrarfilaF2();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La Forma no ha sido creada todavía.");
+                    }
+                    break;
+
+                case 3:
+                    if (F2 != null) {
+                        int dato = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato a insertar:"));
+                        int fila = Integer
+                                .parseInt(JOptionPane.showInputDialog(null, "Ingrese la fila donde quiere insertar:"));
+                        int columna = Integer.parseInt(
+                                JOptionPane.showInputDialog(null, "Ingrese la columna donde quiere insertar:"));
+                        if (fila <= n && columna <= m) {
+                            F2.InsertarD(fila, columna, dato);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Ingrese filas y columnas de forma adecuada.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La Forma no ha sido creada todavía.");
+                    }
+                    break;
+
+                case 4:
+                    int op2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Desea eliminar por: "
+                            + "\n1)Dato"
+                            + "\n2)Posicion"));
+
+                    switch (op2) {
+                        case 1:
+                            int dato = Integer
+                                    .parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato a eliminar:"));
+                            F2.EliminarDato(dato);
+                            break;
+
+                        case 2:
+                            int fila = Integer.parseInt(
+                                    JOptionPane.showInputDialog(null, "Ingrese la fila donde quiere eliminar:"));
+                            int columna = Integer.parseInt(
+                                    JOptionPane.showInputDialog(null, "Ingrese la columna donde quiere eliminar:"));
+                            F2.EliminarPos(fila, columna);
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                    break;
+
+                case 5:
+                    if (F2 != null) {
+                        F2.Sumarfilas();
+                        ;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La Forma no ha sido creada todavía.");
+                    }
+                    break;
+
+                case 6:
+                    if (F2 != null) {
+                        F2.Sumarcolumnas();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La Forma no ha sido creada todavía.");
+                    }
+                    break;
+
+                case 7:
+                    if (F2 != null) {
+                        do {
+                            JOptionPane.showMessageDialog(null,
+                                    "Tamaño de la matriz: " + F2.getPunta().getF() + "x" + F2.getPunta().getC());
+                            n = Integer.parseInt(
+                                    JOptionPane.showInputDialog(null,
+                                            "¿Cuantas filas tendra la matriz?(Debe ser igual a la otra matriz)"));
+                            m = Integer.parseInt(
+                                    JOptionPane.showInputDialog(null,
+                                            "¿Cuantas columnas tendra la matriz?(Debe ser igual a la otra matriz)"));
+                        } while (n != F2.getPunta().getF() && m != F2.getPunta().getC());
+                        Mat = new int[n][m];
+                        Mat = Utilidades.LlenadoAleatorio(n, m);
+                        Forma2 F3 = new Forma2();
+                        F3.crearF2(Mat);
+                        F2.MostrarfilaF2();
+                        JOptionPane.showMessageDialog(null, "+");
+                        F3.MostrarfilaF2();
+                        F2.SumadeF(F3);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La Forma no ha sido creada todavía.");
+                    }
+
+                    break;
+
+                case 8:
+                    if (F2 != null) {
+                        do {
+                            JOptionPane.showMessageDialog(null,
+                                    "Tamaño de la matriz: " + F2.getPunta().getF() + "x" + F2.getPunta().getC());
+                            n = Integer.parseInt(
+                                    JOptionPane.showInputDialog(null,
+                                            "¿Cuantas filas tendra la matriz?(Debe ser igual a la columna de la otra matriz a multiplicar)"));
+                            m = Integer.parseInt(
+                                    JOptionPane.showInputDialog(null,
+                                            "¿Cuantas columnas tendra la matriz?(mayor a 0)"));
+                        } while (n != F2.getPunta().getF() || m < 1);
+                        Mat = new int[n][m];
+                        Mat = Utilidades.LlenadoAleatorio(n, m);
+                        Forma2 F3 = new Forma2();
+                        F3.crearF2(Mat);
+                        F2.MostrarfilaF2();
+                        JOptionPane.showMessageDialog(null, "x");
+                        F3.MostrarfilaF2();
+                        F2.Multiplicar(F3);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La Forma no ha sido creada todavía.");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } while (op != 0);
     }
 
 }
-
