@@ -9,6 +9,13 @@
             "name": "MatricesDispersas",
             "request": "launch",
             "mainClass": "matricesdispersas.MatricesDispersas",
+            "projectName": "MatricesDispersas_c09d99e5"
+        },
+        {
+            "type": "java",
+            "name": "MatricesDispersas",
+            "request": "launch",
+            "mainClass": "matricesdispersas.MatricesDispersas",
             "projectName": "MatricesDispersas_bf49d8b7"
         },
         {

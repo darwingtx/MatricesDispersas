@@ -58,7 +58,7 @@ public class Forma1 {
 
     }
 
-     public void Paso1(int M[][]) {
+    public void Paso1(int M[][]) {
 
         int may, i = 0;
 
@@ -106,11 +106,8 @@ public class Forma1 {
             a = RC;
             p = Punta.getLiga();
             while (p != Punta) {
-
                 q = p.getLf();
-
                 while (q != p) {
-
                     if (q.getC() == RC.getC()) {
                         a.setLc(q);
                         a = q;
@@ -152,6 +149,7 @@ public class Forma1 {
             JOptionPane.showMessageDialog(null, "No hay Matriz");
         }
     }
+
     public void MostrarCOF1() {
 
         if (Punta != null) {
@@ -247,7 +245,6 @@ public class Forma1 {
                 if (ins != 0) {
                     p = B.encontrarRC(i);
                     InsertarFinalF(p, i, k, ins);
-
                 }
                 k++;
             }
@@ -257,7 +254,7 @@ public class Forma1 {
         B.MostrarF1();
     }
 
-    public Nodo encontrarRC(int n) {
+    public Nodo encontrarRC(int n) {// Encontrar registro cabeza
         Nodo p = Punta.getLiga();
         while (p != Punta) {
             if (p.getF() == n) {
@@ -269,7 +266,7 @@ public class Forma1 {
 
     }
 
-    private Nodo encontrarP(int n, int m) {
+    private Nodo encontrarP(int n, int m) {//EncontrarPosicion
         Nodo p = Punta.getLiga();
         Nodo q = p.getLf();
         while (p != Punta) {
@@ -322,6 +319,105 @@ public class Forma1 {
         B.Paso3();
         B.MostrarF1();
 
+    }
+
+    public void InsertarD(int n, int m, int dato) {
+        Nodo x = new Nodo(n, m, dato);
+        Nodo p = Punta.getLiga();
+        Nodo q = encontrarP(n, m);
+        if (q == null) {
+
+            while (p.getF() != n) {
+                p = p.getLiga();
+            }
+            p = p.getLf();
+            Nodo a = encontrarRC(n);
+            if (p != a) {
+
+                while (p != a) {
+                    if (p.getLf().getC() > m || p.getLf() == a) {
+                        x.setLf(p.getLf());
+                        p.setLf(x);
+                        p = a;
+                    } else {
+                        p = p.getLf();
+                    }
+                }
+            } else {
+                InsertarFinalF(a, n, m, dato);
+            }
+            this.Paso3();
+        }else{
+            String s = "Hay un dato en la posicion a insertar." + "\n¿Que desea hacer?" + "\n1) Remplazarlo"+ "\n2) Sumarlo";
+            int op = Integer.parseInt(JOptionPane.showInputDialog(null, s));
+            if(op == 1){
+                q.setDato(dato);
+            }else if(op == 2){
+                 q.setDato(dato + q.getDato());
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error intente de nuevo en la eleccion");
+                this.InsertarD(n, m, dato);
+            }
+        }
+
+    }
+
+    public void EliminarDato(int dato){
+        Nodo p = BuscarDato(dato);
+        while(p!= null){
+            Nodo x = Buscarant(p);
+            x.setLf(p.getLf());
+            p.setLc(null);
+            p.setLf(null);
+            p=BuscarDato(dato);
+        }
+        Paso3();
+    }
+
+    public void EliminarPos(int n, int m){
+        Nodo p = encontrarP(n, m);
+        Nodo x = Buscarant(p);
+        x.setLf(p.getLf());
+        p.setLf(null);
+        p.setLc(null);
+        Paso3();
+
+    }
+
+    public Nodo Buscarant(Nodo x){
+        Nodo p = Punta.getLiga();
+        Nodo q = p.getLf();
+        while (p != Punta) {
+            q = p.getLf();
+            while (q != p) {
+                if (q.getLf() == x) {
+                    return q;
+                }else if(p.getLf() == q && q == x){
+                    return p;
+                }
+
+                q = q.getLf();
+            }
+            p = p.getLiga();
+        }
+        return null;
+    }
+
+    public Nodo BuscarDato(int dato) {
+        Nodo p = Punta.getLiga();
+        Nodo q = p.getLf();
+        while (p != Punta) {
+            q = p.getLf();
+            while (q != p) {
+                if (q.getDato() == dato) {
+                    return q;
+                }
+                q = q.getLf();
+            }
+            p = p.getLiga();
+        }
+        return null;
     }
 
     public Nodo getPunta() {

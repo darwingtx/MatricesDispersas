@@ -40,15 +40,15 @@ public class Forma2 {
 
         Nodo x = new Nodo(fila, colm, dato);
         Nodo p = Punta;
-        if(Punta!=null){
-        while (p.getLf() != Punta) {
-            p = p.getLf();
+        if (Punta != null) {
+            while (p.getLf() != Punta) {
+                p = p.getLf();
 
+            }
+        } else {
+            Punta = x;
+            p = Punta;
         }
-       }else{
-        Punta=x; 
-        p=Punta;
-    }
         p.setLf(x);
         x.setLf(Punta);
 
@@ -140,33 +140,85 @@ public class Forma2 {
         }
     }
 
-    public void InsertarD(int a, int b, int c) {
-        Nodo x = new Nodo(a, b, c);
-        Nodo p = Punta;
-        Nodo q;
-
-        while (p != Punta) {
-            if (p.getF() == a) {
-                if (p.getC() > b) {
-                    q = Buscarant(p);
-                    q.setLf(x);
-                    x.setLf(p);
-                } else if (p.getC() < b) {
-                    q = p;
-                    p = p.getLf();
-                    if (p.getF() == a && b < p.getC()) {
+    public void InsertarD(int n, int m, int dato) {// n fila, m columna
+        Nodo x = new Nodo(n, m, dato);
+        Nodo p = Punta.getLf();
+        Nodo q = BuscarPos(n, m);
+        if (q != null) {
+            String s = "Hay un dato en la posicion a insertar." + "\n¿Que desea hacer?" + "\n1) Remplazarlo"
+                    + "\n2) Sumarlo";
+            int op = Integer.parseInt(JOptionPane.showInputDialog(null, s));
+            if (op == 1) {
+                q.setDato(dato);
+            } else if (op == 2) {
+                q.setDato(dato + q.getDato());
+            } else {
+                JOptionPane.showMessageDialog(null, "Error intente de nuevo en la eleccion");
+                this.InsertarD(n, m, dato);
+            }
+        } else {
+            boolean ba = false;
+            while (p != Punta) {
+                if (p.getF() == n) {
+                    if (p.getC() > m) {
+                        q = Buscarant(p);
                         q.setLf(x);
                         x.setLf(p);
-                    } else if (p.getF() != a) {
+                        ba = true;
+                    }
+                }
+                p = p.getLf();
+            }
+            if (ba == false) {
+                p = Punta.getLf();
+                while (p != Punta) {
+                    if (p.getF() > n || p.getLf() == Punta) {
+                        q = Buscarant(p);
                         q.setLf(x);
                         x.setLf(p);
-
+                        ba = true;
+                        p = Punta;
+                    } else {
+                        p = p.getLf();
                     }
                 }
             }
-
+            this.paso2();
         }
+        this.MostrarcolunmaF2();
+        System.out.println();
+    }
 
+    public void EliminarPos(int n, int m){
+        Nodo q = BuscarPos(n,m);
+        Nodo x = Buscarant(q);
+        x.setLf(q.getLf());
+        q.setLc(null);
+        q.setLf(null);
+        paso2();
+    }
+
+    public void EliminarDato(int dato){
+        Nodo q = BuscarDato(dato);
+        while(q!=Punta){
+            Nodo x = this.Buscarant(q);
+            x.setLf(q.getLf());
+            q.setLf(null);
+            q.setLc(null);
+            q = BuscarDato(dato);
+        }
+        paso2();
+    }
+
+    private Nodo BuscarPos(int n, int m) {
+        Nodo q = Punta.getLf();
+        while (q != Punta) {
+            if (q.getF() == n && q.getC() == m) {
+                return q;
+            }
+            q = q.getLf();
+        }
+        return q;
     }
 
     private Nodo Buscarant(Nodo p) {
@@ -178,9 +230,22 @@ public class Forma2 {
         return q;
     }
 
+    private Nodo BuscarDato(int dato) {
+        
+        Nodo q = Punta.getLf();
+        while (q != Punta) {
+            if (q.getDato() == dato) {
+                return q;
+            }
+            q = q.getLf();
+        }
+        return q;
+
+    }
+
     public void Multiplicar(Forma2 A) {
         Forma2 B = new Forma2();
-        B.InsertarFinalF(this.Punta.getF(),A.Punta.getC(),0);
+        B.InsertarFinalF(this.Punta.getF(), A.Punta.getC(), 0);
         int e = 0, c = 0;
         int k = 0, i = 0, j = 0, ins = 0;
         while (i < this.Punta.getF()) {
@@ -197,13 +262,10 @@ public class Forma2 {
                         c = 0;
                     }
                     ins += e * c;
-                    // this.Mat[i][j]*A.Mat[j][k];
-
                     j++;
                 }
                 if (ins != 0) {
-                    B.InsertarFinalF( i, k, ins);
-
+                    B.InsertarFinalF(i, k, ins);
                 }
                 k++;
             }
@@ -219,17 +281,17 @@ public class Forma2 {
         while (p != Punta) {
             if (p.getF() == n && p.getC() == m) {
                 return p;
-                    }
-            
-            p=p.getLf();
+            }
+
+            p = p.getLf();
         }
         return null;
-    
+
     }
 
-   public void SumadeF(Forma2 A) {
+    public void SumadeF(Forma2 A) {
         Forma2 B = new Forma2();
-         B.InsertarFinalF(this.Punta.getF(),A.Punta.getC(),0);
+        B.InsertarFinalF(this.Punta.getF(), A.Punta.getC(), 0);
         int e = 0, c = 0;
         int i = 0, j = 0, ins = 0;
         while (i < this.Punta.getF()) {
