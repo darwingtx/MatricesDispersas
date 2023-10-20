@@ -24,14 +24,14 @@ public class MatricesDispersas {
     //  T.Mostrar();
         // Forma2 F2= new Forma2();
         // F2.crearF2(Mat2);
-        // Tripleta T2 = new Tripleta(Utilidades.ContarDato(Mat2));
+        Tripleta T2 = new Tripleta(Utilidades.ContarDato(Mat2));
 
-        // T2.CrearTripleta(Mat2);
+        T2.CrearTripleta(Mat2);
         //  T2.Mostrar();
         // if(T.getMat(0, 1)==T2.getMat(0,0)){
         // T.Multiplicar(T2);
         // }
-          T.Endemoniado(F1);
+          T.Multiplicar(T2);
         
         
     }

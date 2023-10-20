@@ -146,7 +146,7 @@ public class Tripleta {
     // el resultado sera las filas de this por las columnas de A
     // e,i,j y c,j,k
     public void Multiplicar(Tripleta A) {
-        Tripleta B = new Tripleta(this.Mat[0][1] * A.Mat[0][0]);
+        Tripleta B = new Tripleta(this.Mat[0][0] * A.Mat[0][1]);
         B.Mat[0][0] = this.Mat[0][0];
         B.Mat[0][1] = A.Mat[0][1];
         int e = 0, c = 0;
@@ -160,8 +160,6 @@ public class Tripleta {
                     e = this.encontrarPos(i, j);
                     c = A.encontrarPos(j, k);
                     ins += e * c;
-                    // this.Mat[i][j]*A.Mat[j][k];
-
                     j++;
                 }
                 if (ins != 0) {
@@ -240,7 +238,6 @@ public class Tripleta {
         }
         B.Paso3();
         B.MostrarF1();
-        B.MostrarCOF1();
     }
 
     // se debe hacer solo si ambas Tripletas tienen dimensiones iguales.
